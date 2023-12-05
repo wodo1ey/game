@@ -1,0 +1,21 @@
+extends Node2D
+
+@onready var st = $Sprite2D.texture
+@onready var last_pos = global_position
+
+var down = false
+
+func _process(delta):
+	queue_redraw()
+	
+func _draw():
+	var gl = global_position.y - last_pos.y
+	var uvs = [Vector2(0,0),Vector2(1,0),Vector2(1,1),Vector2(0,1)]
+	var light_vector = get_global_mouse_position() - global_position
+	var p1 = Vector2(-st.get_width()/2, -st.get_height()/2) - light_vector/2
+	var p2 = Vector2(st.get_width()/2, -st.get_height()/2) - light_vector/2
+	var p3 = Vector2(st.get_width()/2, st.get_height()/2)
+	var p4 = Vector2(-st.get_width()/2, st.get_height()/2)
+	var points = [p1,p2,p3,p4]
+	var colors = [Color(0,0,0,0.5),Color(0,0,0,0.5),Color(0,0,0,0.5),Color(0,0,0,0.5)]
+	draw_primitive(points, colors, uvs, st)
