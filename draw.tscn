@@ -1,0 +1,23 @@
+if velocity.x > 0 and not is_on_floor() and anim != "dash":
+		draw_primitive(points, colors, uvs, sprite.sprite_frames.get_frame_texture("jump", sprite.frame))
+	elif velocity.x < 0 and not is_on_floor() and anim != "dash":
+		draw_primitive(points, colors, uvs, sprite.sprite_frames.get_frame_texture("jump", sprite.frame))
+	if not is_on_floor() and anim != "dash":
+		draw_primitive(points, colors, uvs, sprite.sprite_frames.get_frame_texture("jump", sprite.frame))
+	if velocity.x > 0 and is_on_floor() and anim != "dash":
+		draw_primitive(points, colors, uvs, sprite.sprite_frames.get_frame_texture("walk", sprite.frame))
+	elif velocity.x < 0 and is_on_floor() and anim != "dash":
+		draw_primitive(points, colors, uvs, sprite.sprite_frames.get_frame_texture("walk", sprite.frame))
+	elif is_on_floor() and velocity.x == 0:
+		draw_primitive(points, colors, uvs, sprite.sprite_frames.get_frame_texture("idle", sprite.frame))
+	
+	if anim == "slide":
+		draw_primitive(points, colors, uvs, sprite.sprite_frames.get_frame_texture("slide", sprite.frame))
+		if clw.is_colliding():
+			sprite.flip_h = false
+		else:
+			sprite.flip_h = true
+	elif anim == "dash":
+		draw_primitive(points, colors, uvs, sprite.sprite_frames.get_frame_texture("dash", sprite.frame))
+	elif anim == "afterdark":
+		draw_primitive(points, colors, uvs, sprite.sprite_frames.get_frame_texture("idle", sprite.frame))
